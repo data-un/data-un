@@ -68,7 +68,21 @@ public class interfaz {
                 
             }
         };
+        ActionListener revisar = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                try {
+                    Revision rev = new Revision();
+                    rev.setVisible(true);
+                    f.dispose();
+                } catch (Exception ex) {
+                    System.out.println("error"+ex);;
+                }
+                
+            }
+        };
         b1.addActionListener(crear);
+        b2.addActionListener(revisar);
         f.setVisible(true);
         f.setDefaultCloseOperation(3);
         
