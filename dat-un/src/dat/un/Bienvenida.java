@@ -88,7 +88,7 @@ public class Bienvenida extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         interfaz i = new interfaz();
-        i.setVisible(true);
+        i.f.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
