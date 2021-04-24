@@ -59,7 +59,7 @@ public class interfaz {
             @Override
             public void actionPerformed(ActionEvent e){
                 try {
-                    Formulario form = new Formulario();
+                    Formulario form = new Formulario(3);
                     form.setVisible(true);
                     f.dispose();
                 } catch (Exception ex) {

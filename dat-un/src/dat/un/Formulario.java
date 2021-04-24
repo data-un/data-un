@@ -12,12 +12,24 @@ import java.awt.Color;
  * @author vimad
  */
 public class Formulario extends javax.swing.JFrame {
+    public int i;
 
     /**
      * Creates new form Formulario
      */
-    public Formulario() {
+    public Formulario(int i) {
         initComponents();
+        this.i =i;
+        this.setDefaultCloseOperation(this.i);
+        if(this.i==2){
+            jButton1.setVisible(false);
+            jButton2.setVisible(false);
+            jButton3.setVisible(true);
+        }else if(this.i==3){
+            jButton1.setVisible(true);
+            jButton2.setVisible(true);
+            jButton3.setVisible(false);
+        }
     }
 
     /**
@@ -53,6 +65,7 @@ public class Formulario extends javax.swing.JFrame {
         inLocalidad = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,8 +99,6 @@ public class Formulario extends javax.swing.JFrame {
 
         jLabel11.setText("Localidad");
 
-        inLocalidad.setText("jTextField1");
-
         jButton1.setBackground(new Color(255,143,0,255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("volver");
@@ -101,17 +112,17 @@ public class Formulario extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("crear");
 
+        jButton3.setBackground(new java.awt.Color(255, 143, 0));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Actualizar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel11)
@@ -136,8 +147,14 @@ public class Formulario extends javax.swing.JFrame {
                             .addComponent(inFechaInicio)
                             .addComponent(inUbicacion)
                             .addComponent(inEstado)
-                            .addComponent(inLocalidad))))
-                .addContainerGap(74, Short.MAX_VALUE))
+                            .addComponent(inLocalidad)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(100, 100, 100)
+                        .addComponent(jButton3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +204,8 @@ public class Formulario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -242,7 +260,7 @@ public class Formulario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Formulario().setVisible(true);
+                //new Formulario().setVisible(true);
             }
         });
     }
@@ -260,6 +278,7 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JTextField inUbicacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
