@@ -1,16 +1,26 @@
-import java.sql.*;
 import java.util.Scanner;
 
+import java.sql.*;
+import java.sql.SQLException;
+
 public class Data {
+
     public static void Datamanagment() {
+
         String flag = "S";
 
         do {
+
             System.out.println("Seleccione la operación a realizar");
+
             System.out.println("1. Insertar");
+
             System.out.println("2. Actualizar");
+
             System.out.println("3. Eliminar");
+
             System.out.println("4. Mostrar datos");
+
             System.out.println("5. Salir");
 
             Scanner reader = new Scanner(System.in);
@@ -44,10 +54,8 @@ public class Data {
 
                     name = scanName.nextLine();
 
-                    sql = "INSERT INTO SampleTable (s_name,) " +
-
-                            "VALUES (" + name + ")";
-
+                    sql = "INSERT INTO SampleTable (s_name) " + "VALUES ('"+name+"')";
+                   
                     stmt.executeUpdate(sql);
 
                     System.out.println("Datos insertados correctamente");
@@ -96,7 +104,7 @@ public class Data {
 
                     ResultSet rs = stmt.executeQuery("SELECT * FROM SampleTable;");
 
-                    System.out.println("ID\t Name\t\t Price\t Qty ");
+                    System.out.println("ID\t Name\t");
 
                     while (rs.next()) {
 
