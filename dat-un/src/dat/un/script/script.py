@@ -12,4 +12,4 @@ def generate(columnas, filas):
     return pd.DataFrame.from_dict(diccionario)
 
 for i in range(1,8):
-    generate(4,10**i).to_csv('tests{}.csv'.format(10**i))
+    generate(4,10**i).to_json('tests{}.csv'.format(10**i))
