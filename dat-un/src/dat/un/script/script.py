@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np 
 
-def generate(columnas, filas):
+def generate(filas):
     columns = [ "Caso", "Edad", "Fecha inicio", "Fecha Dx", "Sexo", "Ciudad", "Localidad", "Ubicación", "Estado", "tipo.contagio"]
     diccionario = {
         i : np.arange(filas) + 1 if i == 'Caso' 
@@ -12,4 +12,4 @@ def generate(columnas, filas):
     return pd.DataFrame.from_dict(diccionario)
 
 for i in range(1,8):
-    generate(4,10**i).to_json('tests{}.json'.format(10**i))
+    generate(10**i).to_json('tests{}.json'.format(10**i))
