@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 import java.sql.*;
-import java.sql.SQLException;
 
 public class Data {
 
@@ -76,7 +75,7 @@ public class Data {
 
                     name = scanName.nextLine();
 
-                    sql = "UPDATE SampleTable SET s_name = " + name + "WHERE id=" + id;
+                    sql = "UPDATE SampleTable SET s_name = '"+name+"' WHERE id=" +id;
 
                     stmt.executeUpdate(sql);
 
@@ -154,7 +153,7 @@ public class Data {
             reader = new Scanner(System.in);
 
             flag = reader.nextLine();
-
+            
         }
 
         while (flag.equalsIgnoreCase("S"));
