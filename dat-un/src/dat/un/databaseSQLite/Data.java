@@ -39,10 +39,6 @@ public class Data {
                 stmt = c.createStatement();
                 String name = "", sql = "";
 
-                float price = 0.0f;
-
-                int quantity = 0;
-
                 int id;
 
                 Scanner scanName;
@@ -117,7 +113,7 @@ public class Data {
 
                         name = rs.getString("s_name");
 
-                        System.out.println(id + "\t " + name + " \t " + price + "\t " + quantity);
+                        System.out.println(id + "\t " + name + " \t " );
 
                     }
 
