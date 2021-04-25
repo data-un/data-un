@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np 
 
 def generate(columnas, filas):
-    columns = [ 'columna {}'.format(i) for i in range(columnas)]
-    diccionario = { i: np.random.randint(100000000, size = filas) if i != 'columna 1' 
+    columns = [ "Caso", "Edad", "Fecha inicio", "Fecha Dx", "Sexo", "Ciudad", "Localidad", "Ubicación", "Estado", "tipo.contagio"]
+    diccionario = { i: np.random.randint(100000000, size = filas) if i != 'Estado' 
     else np.random.randint(2,size = filas) for i in columns}
     return pd.DataFrame.from_dict(diccionario)
 
