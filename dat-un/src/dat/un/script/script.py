@@ -5,7 +5,7 @@ def generate(filas):
     columns = [ "Caso", "Edad", "Fecha inicio", "Fecha Dx", "Sexo", "Ciudad", "Localidad", "Ubicación", "Estado", "tipo.contagio"]
     diccionario = {
         i : np.arange(filas) + 1 if i == 'Caso' 
-        else np.random.randint(2, size = filas) if i == 'Estado'
+        else np.random.randint(2, size = filas) if i == 'Estado' or i == 'Sexo'
         else np.random.randint(10**8, size = filas) 
         for i in columns 
     }
