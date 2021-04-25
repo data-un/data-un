@@ -1,4 +1,3 @@
 # Project exclude paths
-/out/
-/.idea/
 /data-un.iml
+/dat-un/nbproject/private/
