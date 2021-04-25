@@ -108,7 +108,7 @@ public class Data {
 
                     while (rs.next()) {
 
-                        id = rs.getInt("p_id");
+                        id = rs.getInt("id");
 
                         name = rs.getString("s_name");
 
