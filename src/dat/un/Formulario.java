@@ -5,6 +5,8 @@
  */
 package dat.un;
 
+import dat.un.databaseSQLite.SQLiteConnect;
+import dat.un.databaseSQLite.VData;
 import java.awt.Color;
 
 /**
@@ -52,7 +54,6 @@ public class Formulario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         inTipo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        inSexo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         inCiudad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -66,6 +67,7 @@ public class Formulario extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,7 +79,7 @@ public class Formulario extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha Diagnostico");
 
-        inFechaDiag.setText("DD/MM/AAAA");
+        inFechaDiag.setToolTipText("DD/MM/AAAA");
 
         jLabel4.setText("Caso");
 
@@ -85,13 +87,11 @@ public class Formulario extends javax.swing.JFrame {
 
         jLabel6.setText("Sexo");
 
-        inSexo.setText("F o M");
-
         jLabel7.setText("Ciudad");
 
         jLabel8.setText("Fecha inicio sintomas");
 
-        inFechaInicio.setText("DD/MM/AAAA");
+        inFechaInicio.setToolTipText("DD/MM/AAAA");
 
         jLabel9.setText("Ubicación");
 
@@ -101,7 +101,7 @@ public class Formulario extends javax.swing.JFrame {
 
         jButton1.setBackground(new Color(255,143,0,255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("volver");
+        jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -110,11 +110,18 @@ public class Formulario extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 143, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("crear");
+        jButton2.setText("Crear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 143, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Actualizar");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,7 +149,7 @@ public class Formulario extends javax.swing.JFrame {
                             .addComponent(inFechaDiag, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                             .addComponent(inCaso)
                             .addComponent(inTipo)
-                            .addComponent(inSexo)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inCiudad)
                             .addComponent(inFechaInicio)
                             .addComponent(inUbicacion)
@@ -178,9 +185,9 @@ public class Formulario extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(inTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(inSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -230,6 +237,16 @@ public class Formulario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        SQLiteConnect connect = new SQLiteConnect();
+        
+        boolean insert = connect.insert("Alvaro");
+        connect.read();
+        
+        connect.close();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,12 +290,12 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JTextField inFechaDiag;
     private javax.swing.JTextField inFechaInicio;
     private javax.swing.JTextField inLocalidad;
-    private javax.swing.JTextField inSexo;
     private javax.swing.JTextField inTipo;
     private javax.swing.JTextField inUbicacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -292,4 +309,5 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
 }

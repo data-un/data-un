@@ -118,6 +118,11 @@ public class Revision extends javax.swing.JFrame {
         bFechaDx.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(bFechaDx);
         bFechaDx.setText("Fecha Dx");
+        bFechaDx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bFechaDxActionPerformed(evt);
+            }
+        });
 
         bSexo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(bSexo);
@@ -146,15 +151,16 @@ public class Revision extends javax.swing.JFrame {
 
         bTipo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(bTipo);
-        bTipo.setText("tipo. contagio");
+        bTipo.setText("Tipo contagio");
 
         bRango.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(bRango);
-        bRango.setText("por rango de casos");
+        bRango.setText("Rango de casos");
 
         jButton2.setBackground(new java.awt.Color(255, 143, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("filtrar");
+        jButton2.setText("Filtrar");
+        jButton2.setToolTipText("");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dat/un/images/logo3.png"))); // NOI18N
 
@@ -200,7 +206,7 @@ public class Revision extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(bFechaDx)
                                             .addComponent(bEstado))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(bTipo)
                                             .addComponent(bSexo))
@@ -217,13 +223,14 @@ public class Revision extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(34, 34, 34)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(52, 52, 52)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jLabel2))
                                     .addComponent(jLabel3))
                                 .addGap(38, 38, 38))
@@ -301,6 +308,10 @@ public class Revision extends javax.swing.JFrame {
         Formulario form = new Formulario(2);
         form.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void bFechaDxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFechaDxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bFechaDxActionPerformed
 
     /**
      * @param args the command line arguments
