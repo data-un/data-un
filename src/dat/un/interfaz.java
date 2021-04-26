@@ -18,7 +18,7 @@ import javax.swing.*;
 public class interfaz {
     
     JPanel p;
-    JButton b1, b2; 
+    JButton b1, b2, b3; 
     JLabel L1;
     JFrame f;
     
@@ -26,14 +26,15 @@ public class interfaz {
         f = new JFrame();
         f.setLayout(null);
         f.setBounds(20,20,400,600);
+        p = new JPanel();
         b1 = new JButton();
         b2 = new JButton();
         L1 = new JLabel();
-        p = new JPanel();
-        f.add(p);
+        
         
         f.add(b1);
         f.add(b2);
+        f.add(p);
         
         p.setBounds(f.getX()-20,f.getY()-20,f.getWidth(),f.getHeight());
         Color white = new Color(255,255,255,255);
@@ -54,7 +55,6 @@ public class interfaz {
         b2.setForeground(white);
         b1.setFont(new Font("Arial", Font.PLAIN, 25));
         b2.setFont(new Font("Arial", Font.PLAIN, 25));
-        
         ActionListener crear = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
