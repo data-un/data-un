@@ -5,7 +5,6 @@
  */
 package dat.un;
 
-import dat.un.databaseSQLite.SQLiteConnect;
 import java.awt.Color;
 import java.sql.Date;
 import java.text.ParseException;

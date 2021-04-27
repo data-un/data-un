@@ -1,4 +1,4 @@
-package dat.un.databaseSQLite;
+package dat.un;
 
 import dat.un.Estadisticas;
 import java.sql.Connection;
