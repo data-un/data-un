@@ -6,8 +6,13 @@
 package dat.un;
 
 import dat.un.databaseSQLite.SQLiteConnect;
-import dat.un.databaseSQLite.VData;
 import java.awt.Color;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -67,7 +72,7 @@ public class Formulario extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        inSexo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +84,7 @@ public class Formulario extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha Diagnostico");
 
-        inFechaDiag.setToolTipText("DD/MM/AAAA");
+        inFechaDiag.setToolTipText("AAAA-MM-DD");
 
         jLabel4.setText("Caso");
 
@@ -91,7 +96,7 @@ public class Formulario extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha inicio sintomas");
 
-        inFechaInicio.setToolTipText("DD/MM/AAAA");
+        inFechaInicio.setToolTipText("AAAA-MM-DD");
 
         jLabel9.setText("Ubicación");
 
@@ -121,7 +126,7 @@ public class Formulario extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Actualizar");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
+        inSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -149,7 +154,7 @@ public class Formulario extends javax.swing.JFrame {
                             .addComponent(inFechaDiag, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                             .addComponent(inCaso)
                             .addComponent(inTipo)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inCiudad)
                             .addComponent(inFechaInicio)
                             .addComponent(inUbicacion)
@@ -186,7 +191,7 @@ public class Formulario extends javax.swing.JFrame {
                     .addComponent(inTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,10 +245,32 @@ public class Formulario extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         SQLiteConnect connect = new SQLiteConnect();
+        Estadisticas estadisticas = new Estadisticas();
         
-        boolean insert = connect.insert("Alvaro");
-        connect.read();
+        int edad = Integer.parseInt(inEdad.getText());
+        Date fecha_diagnostico = Date.valueOf(inFechaDiag.getText());
+        Date fecha_sintomas = Date.valueOf(inFechaInicio.getText());
+                
+        int caso = Integer.parseInt(inCaso.getText());
+        String tipo_contagio = inTipo.getText();
+        String sexo = String.valueOf(inSexo.getSelectedItem());
+        String ciudad = inCiudad.getText();
+        String ubicacion = inUbicacion.getText();
+        String estado = inEstado.getText();
+        String localidad = inLocalidad.getText();
         
+        estadisticas.setEdad(edad);
+        estadisticas.setFechaDiagnostico(fecha_diagnostico);
+        estadisticas.setId(caso);
+        estadisticas.setTipoContagio(tipo_contagio);
+        estadisticas.setSexo(sexo);
+        estadisticas.setCiudad(ciudad);
+        estadisticas.setFechaSintomas(fecha_sintomas);
+        estadisticas.setUbicacion(ubicacion);
+        estadisticas.setEstado(estado);
+        estadisticas.setLocalidad(localidad);
+        
+        connect.insert(estadisticas);                      
         connect.close();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -290,12 +317,12 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JTextField inFechaDiag;
     private javax.swing.JTextField inFechaInicio;
     private javax.swing.JTextField inLocalidad;
+    private javax.swing.JComboBox<String> inSexo;
     private javax.swing.JTextField inTipo;
     private javax.swing.JTextField inUbicacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

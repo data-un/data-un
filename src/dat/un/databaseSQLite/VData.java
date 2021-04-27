@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import java.sql.*;
 
-public class Data {
+public class VData {
 
     public static void Datamanagment() {
 

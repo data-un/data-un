@@ -5,6 +5,12 @@
  */
 package dat.un;
 
+import dat.un.databaseSQLite.SQLiteConnect;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author vimad
@@ -15,7 +21,15 @@ public class Revision extends javax.swing.JFrame {
      * Creates new form Revision
      */
     public Revision() {
-        initComponents();
+        SQLiteConnect connect = new SQLiteConnect();
+        
+        try {
+            DefaultTableModel defaultTableModel = connect.read();
+            initComponents();
+            jTable1.setModel(defaultTableModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(Revision.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

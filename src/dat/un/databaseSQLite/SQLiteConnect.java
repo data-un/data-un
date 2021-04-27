@@ -5,7 +5,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 public class SQLiteConnect {
     String url = "D:\\test.db";
@@ -32,9 +35,9 @@ public class SQLiteConnect {
            }
     }
     
-    public boolean insert(Estadisticas registro) {
+    public void insert(Estadisticas registro) {
         try {
-            connect.setAutoCommit(false);
+            connect.setAutoCommit(true);
             
             PreparedStatement st = connect.prepareStatement("INSERT INTO estadisticas "
                             + "(edad, fecha_diagnostico, tipo_contagio, sexo, ciudad, fecha_sintomas, ubicacion, estado, localidad) "
@@ -52,33 +55,34 @@ public class SQLiteConnect {
             st.execute();
             
             System.out.println("Datos insertados correctamente");
-            
-            return true;
         } catch (SQLException ex) {
             System.out.println("Insert");
             System.out.println(ex);
-            
-            return false;
         }
     }
     
-    public void read() {
-        ResultSet result = null;
-        
-        try {
-            PreparedStatement st = connect.prepareStatement("SELECT * FROM estadisticas");
-            result = st.executeQuery();
-            while (result.next()) {
-                System.out.print("ID: ");
-                System.out.println(result.getInt("id"));
+    public DefaultTableModel read() throws SQLException {        
+        PreparedStatement st = connect.prepareStatement("SELECT * FROM estadisticas");
+        ResultSet resultSet = st.executeQuery();
 
-                System.out.print("Nombre: ");
-                System.out.println(result.getInt("edad"));
+        ResultSetMetaData metaData = resultSet.getMetaData();
+        Vector<String> columnNames = new Vector<>();
+        int columnCount = metaData.getColumnCount();
 
-                System.out.println("=======================");
-            }
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
         }
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<>();
+        while (resultSet.next()) {
+            Vector<Object> vector = new Vector<>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(resultSet.getObject(columnIndex));
+            }
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames);
     }
 }
