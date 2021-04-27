@@ -125,7 +125,7 @@ public class Formulario extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Actualizar");
 
-        inSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
+        inSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

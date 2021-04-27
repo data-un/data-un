@@ -40,18 +40,19 @@ public class SQLiteConnect {
             connect.setAutoCommit(true);
             
             PreparedStatement st = connect.prepareStatement("INSERT INTO estadisticas "
-                            + "(edad, fecha_diagnostico, tipo_contagio, sexo, ciudad, fecha_sintomas, ubicacion, estado, localidad) "
+                            + "(id, edad, fecha_diagnostico, tipo_contagio, sexo, ciudad, fecha_sintomas, ubicacion, estado, localidad) "
                             + " VALUES "
-                            + "(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            st.setInt(1, registro.getEdad());
-            st.setDate(2, registro.getFechaDiagnostico());
-            st.setString(3, registro.getTipoContagio());
-            st.setString(4, registro.getSexo());
-            st.setString(5, registro.getCiudad());
-            st.setDate(6, registro.getFechaSintomas());
-            st.setString(7, registro.getUbicacion());
-            st.setString(8, registro.getEstado());
-            st.setString(9, registro.getLocalidad());
+                            + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            st.setInt(1, registro.getId());
+            st.setInt(2, registro.getEdad());
+            st.setDate(3, registro.getFechaDiagnostico());
+            st.setString(4, registro.getTipoContagio());
+            st.setString(5, registro.getSexo());
+            st.setString(6, registro.getCiudad());
+            st.setDate(7, registro.getFechaSintomas());
+            st.setString(8, registro.getUbicacion());
+            st.setString(9, registro.getEstado());
+            st.setString(10, registro.getLocalidad());
             st.execute();
             
             System.out.println("Datos insertados correctamente");
@@ -69,17 +70,37 @@ public class SQLiteConnect {
         Vector<String> columnNames = new Vector<>();
         int columnCount = metaData.getColumnCount();
 
-        for (int column = 1; column <= columnCount; column++) {
-            columnNames.add(metaData.getColumnName(column));
-        }
+        columnNames.add("Caso");
+        columnNames.add("Edad");
+        columnNames.add("Fecha diagnostico");
+        columnNames.add("Tipo contagio");
+        columnNames.add("Sexo");
+        columnNames.add("Ciudad");
+        columnNames.add("Fecha sintomas");
+        columnNames.add("Ubicacion");
+        columnNames.add("Estado");
+        columnNames.add("Localidad");
 
         // data of the table
         Vector<Vector<Object>> data = new Vector<>();
         while (resultSet.next()) {
             Vector<Object> vector = new Vector<>();
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-                vector.add(resultSet.getObject(columnIndex));
+                switch (columnIndex) {
+                    case 1:
+                    case 2:
+                        vector.add(resultSet.getInt(columnIndex));
+                        break;
+                    case 3:
+                    case 7:
+                        vector.add(resultSet.getDate(columnIndex));
+                        break;
+                    default:
+                        vector.add(resultSet.getString(columnIndex));
+                        break;
+                }
             }
+
             data.add(vector);
         }
 

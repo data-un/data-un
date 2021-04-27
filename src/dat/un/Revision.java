@@ -8,6 +8,8 @@ package dat.un;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,8 +26,14 @@ public class Revision extends javax.swing.JFrame {
         
         try {
             DefaultTableModel defaultTableModel = connect.read();
+            DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+            rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
             initComponents();
             jTable1.setModel(defaultTableModel);
+            jTable1.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+            jTable1.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+            jTable1.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+            jTable1.getColumnModel().getColumn(6).setCellRenderer(rightRenderer);
         } catch (SQLException ex) {
             Logger.getLogger(Revision.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,39 +81,27 @@ public class Revision extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Caso", "Edad", "Fecha inicio", "Fecha Dx", "Sexo", "Ciudad", "Localidad", "Ubicación", "Estado", "tipo.contagio"
+                "Caso", "Edad", "Fecha Dx", "Fecha Inicio", "Sexo", "Ciudad", "Localidad", "Ubicación", "Estado", "Tipo Contagiocontagio"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setBackground(new java.awt.Color(255, 143, 0));
