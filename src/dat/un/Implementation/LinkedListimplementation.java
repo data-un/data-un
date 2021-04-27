@@ -1,5 +1,7 @@
-public class Arrayimplementation {
-    private DynamicArrayGeneric<Estadisticas> array = new DynamicArrayGeneric<Estadisticas>();
+import java.util.LinkedList;
+
+public class LinkedListimplementation {
+    private LinkedList<Estadisticas> linkedlist = new LinkedList<Estadisticas>();
 
     //Metodo para pasar el ResultSet a la estructura deseada
         public void rstostat(ResultSet rs){
@@ -20,26 +22,33 @@ public class Arrayimplementation {
                 registro.setEstado(rs.getString(9));
                 registro.setLocalidad(rs.getString(10));
     
-                array.addElement(registro);
+                linkedlist.addStart(registro);
     
             }
         }
 
     //Metodo para insertar en posicion especifica
-        public void insert(int i, Estadisticas Registro){
+        public void insert(Estadisticas registro, int i){
     
-            array.addElement(i,Registro);
+            linkedlist.Insert(Registro,i);
         }
     //Metodo para eliminar en posicion especifica
         public void delete(int p){
     
-            array.remove(p);
+            linkedlist.removeAt(p);
     
         }
     //Metodo para encontrar dato dada la posición
         public Estadisticas search(int id){
-            return array.getElement(id);
+            return linkedlist.getElementAt(id);
             
+        }
+    //Metodo para actualizar
+        public void update(Estadisticas stat, int x){
+
+            linkedlist.updateAt(stat,x);
+
         }
     
 }
+
