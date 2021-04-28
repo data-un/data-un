@@ -1,13 +1,14 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 
 public class LinkedListimplementation {
     private LinkedList<Estadisticas> linkedlist = new LinkedList<Estadisticas>();
 
     //Metodo para pasar el ResultSet a la estructura deseada
-        public void rstostat(ResultSet rs){
+        public void rstostat(ResultSet rs) throws SQLException{
     
             Estadisticas registro = new Estadisticas();
-            ResultSetMetaData rsmetadata = rs.getMetaData();
     
             while(rs.next()){
     
@@ -30,7 +31,7 @@ public class LinkedListimplementation {
     //Metodo para insertar en posicion especifica
         public void insert(Estadisticas registro, int i){
     
-            linkedlist.Insert(Registro,i);
+            linkedlist.Insert(registro,i);
         }
     //Metodo para eliminar en posicion especifica
         public void delete(int p){

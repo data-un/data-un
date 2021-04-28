@@ -1,8 +1,13 @@
+
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+
 public class stackimplementation {
 
     private stack<Estadisticas> statstack = new stack<Estadisticas>();
     // Metodo para pasar el ResultSet a la estructura deseada
-    public void rstostat(ResultSet rs) {
+    public void rstostat(ResultSet rs) throws SQLException {
 
         Estadisticas registro = new Estadisticas();
         ResultSetMetaData rsmetadata = rs.getMetaData();
@@ -28,20 +33,20 @@ public class stackimplementation {
     // Metodo para insertar
     public void insert(Estadisticas Registro) {
 
-        statsqueue.push(Registro);
+        statstack.push(Registro);
 
     }
 
     // Metodo para eliminar
     public void delete() {
 
-        statsqueue.pop();
+        statstack.pop();
 
     }
 
-    // Metodo para buscar
+    // Metodo para buscar - TODO
     public boolean search(int id) {
-
+        return false;
     }
 
 }

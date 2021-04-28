@@ -1,13 +1,13 @@
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.util.*;
+import java.sql.SQLException;
 
 public class queueimplementation{
 
     private queue<Estadisticas> statqueue = new queue<Estadisticas>();
 
 //Metodo para pasar el ResultSet a la estructura deseada
-    public void rstostat(ResultSet rs){
+    public void rstostat(ResultSet rs) throws SQLException{
 
         Estadisticas registro = new Estadisticas();
         ResultSetMetaData rsmetadata = rs.getMetaData();
@@ -43,13 +43,6 @@ public class queueimplementation{
     }
 //Metodo para buscar
     public boolean search(int id){
-
+        return false;
     }
-
-
-
-
-
-
-
 }

@@ -1,14 +1,14 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Arrayimplementation {
-    private DynamicArrayGeneric<Estadisticas> array = new DynamicArrayGeneric<Estadisticas>();
+    private final DynamicArrayGeneric<Estadisticas> array = new DynamicArrayGeneric<Estadisticas>();
 
     //Metodo para pasar el ResultSet a la estructura deseada
-        public void rstostat(ResultSet rs){
-    
+        public void rstostat(ResultSet rs) throws SQLException{    
             Estadisticas registro = new Estadisticas();
-            ResultSetMetaData rsmetadata = rs.getMetaData();
     
-            while(rs.next()){
-    
+            while(rs.next()){    
                 registro.setId(rs.getInt(1));
                 registro.setEdad(rs.getInt(2));
                 registro.setFechaDiagnostico(rs.getDate(3));
@@ -20,8 +20,7 @@ public class Arrayimplementation {
                 registro.setEstado(rs.getString(9));
                 registro.setLocalidad(rs.getString(10));
     
-                array.addElement(registro);
-    
+                array.addElement(registro);    
             }
         }
 
@@ -40,6 +39,5 @@ public class Arrayimplementation {
         public Estadisticas search(int id){
             return array.getElement(id);
             
-        }
-    
+        }    
 }
