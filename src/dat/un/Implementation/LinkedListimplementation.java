@@ -1,9 +1,13 @@
+package dat.un.Implementation;
+
+import dat.un.Estadisticas;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
 public class LinkedListimplementation {
-    private LinkedList<Estadisticas> linkedlist = new LinkedList<Estadisticas>();
+    private LinkedList<Estadisticas> linkedlist = new LinkedList<>();
 
     //Metodo para pasar el ResultSet a la estructura deseada
         public void rstostat(ResultSet rs) throws SQLException{
@@ -23,7 +27,7 @@ public class LinkedListimplementation {
                 registro.setEstado(rs.getString(9));
                 registro.setLocalidad(rs.getString(10));
     
-                linkedlist.addStart(registro);
+                linkedlist.addFirst(registro);
     
             }
         }
@@ -31,24 +35,22 @@ public class LinkedListimplementation {
     //Metodo para insertar en posicion especifica
         public void insert(Estadisticas registro, int i){
     
-            linkedlist.Insert(registro,i);
+            linkedlist.add(i, registro);
         }
     //Metodo para eliminar en posicion especifica
         public void delete(int p){
     
-            linkedlist.removeAt(p);
+            linkedlist.remove(p);
     
         }
     //Metodo para encontrar dato dada la posición
         public Estadisticas search(int id){
-            return linkedlist.getElementAt(id);
+            return linkedlist.get(id);
             
         }
     //Metodo para actualizar
         public void update(Estadisticas stat, int x){
-
-            linkedlist.updateAt(stat,x);
-
+            //linkedlist.upupdateAt(stat,x);
         }
     
 }
