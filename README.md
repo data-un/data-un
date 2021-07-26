@@ -49,3 +49,5 @@ Además del apoyo en el código, se designaron tareas especificas para cada cola
 **Victor Manuel Davila Castaneda**
 
 * Implementación de JSwing
+* Maquetado interfaz
+* union interfaz y base de datos
