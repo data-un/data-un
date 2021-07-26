@@ -42,6 +42,7 @@ Además del apoyo en el código, se designaron tareas especificas para cada cola
 **Luis David Preciado Martinez**
 
 * Creación y/o ajuste de estructuras
+* Obtención de los datos de testeo y creación de graficas Big-O
 * Diseño visual de la aplicación
 * Video
 
