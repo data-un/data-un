@@ -25,7 +25,7 @@ public class interfaz {
     public interfaz(){
         f = new JFrame();
         f.setLayout(null);
-        f.setBounds(20,20,400,600);
+        f.setBounds(20,20,900,600);
         p = new JPanel();
         b1 = new JButton();
         b2 = new JButton();
@@ -36,7 +36,7 @@ public class interfaz {
         f.add(b2);
         f.add(p);
         
-        p.setBounds(f.getX()-20,f.getY()-20,f.getWidth(),f.getHeight());
+        p.setBounds(f.getX()-20,f.getY()-20,f.getWidth()-20,f.getHeight()-20);
         Color white = new Color(255,255,255,255);
         Color orange = new Color(255,143,0,255);
         p.setBackground(white);
@@ -44,9 +44,9 @@ public class interfaz {
         b1.setBackground(orange);
         b2.setBackground(orange);
         L1.setIcon(new ImageIcon(getClass().getResource("/dat/un/images/logo3.png")));
-        L1.setBounds(100,100,180,180);
-        b1.setBounds(100, 200, 200,100);
-        b2.setBounds(100, 350, 200,100);
+        L1.setBounds(100, 150, 300, 300);
+        b1.setBounds(125, 350, 200, 100);
+        b2.setBounds(525, 350, 200, 100);
         b1.setVisible(true);
         b2.setVisible(true);
         b1.setText("Agregar Caso");

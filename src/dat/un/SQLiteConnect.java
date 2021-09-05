@@ -11,14 +11,13 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 public class SQLiteConnect {
-    String url = "D:\\test.db";
     Connection connect;
 
     public SQLiteConnect() {
         try {
             String path = "jdbc:sqlite:.\\data\\v-data.sqlite3";
             connect = DriverManager.getConnection(path);
-            
+
             if (connect != null) {
                 System.out.println("Conectado");
             }
@@ -26,7 +25,7 @@ public class SQLiteConnect {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void close(){
            try {
                connect.close();
@@ -34,11 +33,11 @@ public class SQLiteConnect {
                 System.out.println(ex.getMessage());
            }
     }
-    
+
     public void insert(Estadisticas registro) {
         try {
             connect.setAutoCommit(true);
-            
+
             PreparedStatement st = connect.prepareStatement("INSERT INTO estadisticas "
                             + "(id, edad, fecha_diagnostico, tipo_contagio, sexo, ciudad, fecha_sintomas, ubicacion, estado, localidad) "
                             + " VALUES "
@@ -54,16 +53,17 @@ public class SQLiteConnect {
             st.setString(9, registro.getEstado());
             st.setString(10, registro.getLocalidad());
             st.execute();
-            
+
             System.out.println("Datos insertados correctamente");
         } catch (SQLException ex) {
             System.out.println("Insert");
             System.out.println(ex);
         }
     }
-    
-    public DefaultTableModel read() throws SQLException {        
-        PreparedStatement st = connect.prepareStatement("SELECT * FROM estadisticas");
+
+    public DefaultTableModel read() throws SQLException {
+        PreparedStatement st = connect.prepareStatement("SELECT id, edad, fecha_diagnostico, fuente_tipo_contagio," +
+                "sexo, ciudad_nombre, fecha_inicio_sintomas, ubicacion, estado, tipo_diagnostico FROM estadisticas");
         ResultSet resultSet = st.executeQuery();
 
         ResultSetMetaData metaData = resultSet.getMetaData();
@@ -79,26 +79,14 @@ public class SQLiteConnect {
         columnNames.add("Fecha sintomas");
         columnNames.add("Ubicacion");
         columnNames.add("Estado");
-        columnNames.add("Localidad");
+        columnNames.add("Tipo diagnostico");
 
         // data of the table
         Vector<Vector<Object>> data = new Vector<>();
         while (resultSet.next()) {
             Vector<Object> vector = new Vector<>();
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-                switch (columnIndex) {
-                    case 1:
-                    case 2:
-                        vector.add(resultSet.getInt(columnIndex));
-                        break;
-                    case 3:
-                    case 7:
-                        vector.add(resultSet.getDate(columnIndex));
-                        break;
-                    default:
-                        vector.add(resultSet.getString(columnIndex));
-                        break;
-                }
+                vector.add(resultSet.getString(columnIndex));
             }
 
             data.add(vector);
