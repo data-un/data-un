@@ -12,7 +12,7 @@ class Node {
 	}
 }
 
-class AVLTree{
+public class AVLTree {
 
 	Node root;
 
@@ -272,7 +272,13 @@ class AVLTree{
         }
     }
 
+	public Node getRoot() {
+		return root;
+	}
 
+	public void setRoot(Node root) {
+		this.root = root;
+	}
 }
 /*
 class Main {

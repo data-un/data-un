@@ -1,6 +1,7 @@
 package dat.un;
 
-import dat.un.Estadisticas;
+import dat.un.Implementation.AVLTree;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ public class SQLiteConnect {
 
     public SQLiteConnect() {
         try {
-            String path = "jdbc:sqlite:.\\data\\v-data-full.sqlite3";
+            String path = "jdbc:sqlite:.\\data\\v-data.sqlite3";
             connect = DriverManager.getConnection(path);
 
             if (connect != null) {
@@ -57,7 +58,7 @@ public class SQLiteConnect {
             System.out.println("Datos insertados correctamente");
         } catch (SQLException ex) {
             System.out.println("Insert");
-            System.out.println(ex);
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -93,5 +94,21 @@ public class SQLiteConnect {
         }
 
         return new DefaultTableModel(data, columnNames);
+    }
+
+    public void get_birth_dates() {
+        try {
+            PreparedStatement st = connect.prepareStatement("SELECT edad FROM estadisticas");
+            ResultSet resultSet = st.executeQuery();
+
+            AVLTree tree = new AVLTree();
+
+            while (resultSet.next()) {
+                tree.setRoot(tree.insert(tree.getRoot(), resultSet.getInt(1)));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Insert");
+            System.out.println(ex.getMessage());
+        }
     }
 }
