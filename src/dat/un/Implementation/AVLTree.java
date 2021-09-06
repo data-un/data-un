@@ -279,6 +279,22 @@ public class AVLTree {
 	public void setRoot(Node root) {
 		this.root = root;
 	}
+	
+	public double countNode(Node root){
+	        if(root==null)
+	            return 0;
+	        return 1 + countNode(root.left) + countNode(root.right);
+	}
+	 
+	 public double addTree(Node root){
+	     if (root == null)
+	         return 0;
+	     return (root.key + addTree(root.left) +addTree(root.right));
+	 }
+	
+	public double getMean() {
+		return addTree(root)/countNode(root);
+	}
 }
 /*
 class Main {
