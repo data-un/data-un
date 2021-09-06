@@ -15,7 +15,7 @@ public class SQLiteConnect {
 
     public SQLiteConnect() {
         try {
-            String path = "jdbc:sqlite:.\\data\\v-data.sqlite3";
+            String path = "jdbc:sqlite:.\\data\\v-data-full.sqlite3";
             connect = DriverManager.getConnection(path);
 
             if (connect != null) {
@@ -39,7 +39,7 @@ public class SQLiteConnect {
             connect.setAutoCommit(true);
 
             PreparedStatement st = connect.prepareStatement("INSERT INTO estadisticas "
-                            + "(id, edad, fecha_diagnostico, tipo_contagio, sexo, ciudad, fecha_sintomas, ubicacion, estado, localidad) "
+                            + "(id, edad, fecha_diagnostico, fuente_tipo_contagio, sexo, ciudad_nombre, fecha_inicio_sintomas, ubicacion, estado, tipo_diagnostico) "
                             + " VALUES "
                             + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             st.setInt(1, registro.getId());
