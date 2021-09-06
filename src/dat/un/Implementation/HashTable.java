@@ -47,7 +47,7 @@ class HashTable<K, V> {
     	return size() == 0;
     }
 
-    private final int hashCode (K key) {
+    private int hashCode (K key) {
         return Objects.hashCode(key);
     }
 

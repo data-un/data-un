@@ -97,6 +97,31 @@ public class SQLiteConnect {
         return new DefaultTableModel(data, columnNames);
     }
 
+    public DefaultTableModel casesByCity() throws SQLException {
+        PreparedStatement st = connect.prepareStatement("SELECT ciudad_nombre, COUNT(*) AS Counter FROM estadisticas GROUP BY ciudad_nombre");
+        ResultSet resultSet = st.executeQuery();
+
+        ResultSetMetaData metaData = resultSet.getMetaData();
+        Vector<String> columnNames = new Vector<>();
+        int columnCount = metaData.getColumnCount();
+
+        columnNames.add("Ciudad");
+        columnNames.add("No de casos");
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<>();
+        while (resultSet.next()) {
+            Vector<Object> vector = new Vector<>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(resultSet.getString(columnIndex));
+            }
+
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames);
+    }
+
     public double get_birth_dates() {
         try {
             PreparedStatement st = connect.prepareStatement("SELECT edad FROM estadisticas");
