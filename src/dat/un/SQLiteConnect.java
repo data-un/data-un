@@ -21,6 +21,7 @@ public class SQLiteConnect {
 
             if (connect != null) {
                 System.out.println("Conectado");
+                this.get_birth_dates();
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -96,7 +97,7 @@ public class SQLiteConnect {
         return new DefaultTableModel(data, columnNames);
     }
 
-    public void get_birth_dates() {
+    public double get_birth_dates() {
         try {
             PreparedStatement st = connect.prepareStatement("SELECT edad FROM estadisticas");
             ResultSet resultSet = st.executeQuery();
@@ -106,9 +107,13 @@ public class SQLiteConnect {
             while (resultSet.next()) {
                 tree.setRoot(tree.insert(tree.getRoot(), resultSet.getInt(1)));
             }
+
+            return tree.getMean();
         } catch (SQLException ex) {
-            System.out.println("Insert");
+            System.out.println("get_birth_date");
             System.out.println(ex.getMessage());
         }
+
+        return -1;
     }
 }
