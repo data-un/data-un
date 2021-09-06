@@ -1,6 +1,7 @@
 package dat.un;
 
 import dat.un.Implementation.AVLTree;
+import dat.un.Implementation.HashTable;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class SQLiteConnect {
     Connection connect;
+    HashTable<String, Integer> hashTable;
 
     public SQLiteConnect() {
         try {
@@ -108,10 +110,14 @@ public class SQLiteConnect {
         columnNames.add("Ciudad");
         columnNames.add("No de casos");
 
+        hashTable = new HashTable<>();
+
         // data of the table
         Vector<Vector<Object>> data = new Vector<>();
         while (resultSet.next()) {
             Vector<Object> vector = new Vector<>();
+            hashTable.add(resultSet.getString(1), resultSet.getInt(2));
+
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 vector.add(resultSet.getString(columnIndex));
             }
@@ -120,6 +126,10 @@ public class SQLiteConnect {
         }
 
         return new DefaultTableModel(data, columnNames);
+    }
+
+    public int get_cases_by_city(String city) {
+        return hashTable.get(city);
     }
 
     public double get_birth_dates() {

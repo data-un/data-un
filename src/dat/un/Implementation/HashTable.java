@@ -19,7 +19,7 @@ class HashNode<K, V> {
 }
 
 // HashTable
-class HashTable<K, V> {
+public class HashTable<K, V> {
     // Arreglo para almacenar las cadenas
     private ArrayList<HashNode<K, V> > arreglo;
 
